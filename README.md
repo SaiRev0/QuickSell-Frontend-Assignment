@@ -59,6 +59,14 @@ Tickets can be sorted in two ways:
 
 These sorting options are available alongside the grouping options.
 
+### UI
+
+Grouping By Status:
+
+Grouping By User:
+
+Grouping By Priority:
+
 ### Card Design
 
 The application uses a card-based design for displaying tickets. Each card represents a task and contains essential information such as ticket ID, title, priority, status, and assigned user.
