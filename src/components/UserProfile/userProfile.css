@@ -1,0 +1,26 @@
+.UserProfile-container {
+    display: grid;
+    place-items: center;
+    font-size: 0.7rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    background-color: #3351be;
+    color: #fff;
+    border-radius: 9999px;
+    position: relative;
+}
+
+.UserProfile-container .user-status {
+    position: absolute;
+    bottom: -0.125rem;
+    right: -0.125rem;
+    border: 1px solid #fff;
+    background-color: #dfe1e4;
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 9999px;
+}
+
+.UserProfile-container .user-status.available {
+    background-color: #e8b602;
+}

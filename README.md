@@ -1,52 +1,112 @@
-# Getting Started with Create React App
+# Kanban Board Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Project Overview](#project-overview)
+- [Setup Instructions](#setup-instructions)
+- [Features](#features)
+- [Usage Guidelines](#usage-guidelines)
+- [API Integration](#api-integration)
+- [Components](#components)
+- [State Management](#state-management)
+- [Responsive Design](#responsive-design)
+- [Saving User View State](#saving-user-view-state)
+- [Credits](#credits)
 
-In the project directory, you can run:
+## Project Overview
 
-### `yarn start`
+This project is a Kanban Board application built using React and TypeScript. It serves as a visual tool for managing tasks and projects, allowing teams to collaborate effectively by organizing tasks, assigning them to team members, setting due dates, and prioritizing them.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Key features of this Kanban Board include:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Dynamic grouping of tickets based on status, user assignment, and priority
+- Sorting options for tickets based on priority and title
+- Responsive design matching the provided screenshots
+- Persistence of user view state across page reloads
 
-### `yarn test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
 
-### `yarn build`
+`git clone https://github.com/yourusername/kanban-board.git cd kanban-board`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`npm install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start the development server:
 
-### `yarn eject`
+`npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Features
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Grouping Options
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The Kanban board offers three ways to group tickets:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. By Status: Arrange tickets based on their current status
+2. By User: Display tickets assigned to specific users
+3. By Priority: Group tickets based on their priority level
 
-## Learn More
+Users can select their preferred grouping option using the "display" button.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Sorting Options
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Tickets can be sorted in two ways:
 
-## Preview
+1. By Priority: Arrange tickets in descending order of priority
+2. By Title: Sort tickets in ascending order based on their title
 
-![Desktop Screenshot 1](./preview/Desktop-1.png)
-![Desktop Screenshot 2](./preview/Desktop-2.png)
-![Mobile Screenshot 1](./preview/Mobile-1.png)
+These sorting options are available alongside the grouping options.
+
+### Card Design
+
+The application uses a card-based design for displaying tickets. Each card represents a task and contains essential information such as ticket ID, title, priority, status, and assigned user.
+
+### Responsive Design
+
+The Kanban board is built to be responsive, ensuring it looks good and functions properly on various screen sizes and devices.
+
+### Saving User View State
+
+The application persists the user's view state even after page reloads, allowing users to resume their work exactly where they left off.
+
+## Usage Guidelines
+
+1. Navigate to the Kanban Board application in your web browser.
+2. Select your preferred grouping option using the "display" button.
+3. Choose either Priority or Title sorting based on your preference.
+4. Hover on a card to view complete information about the task.
+
+## API Integration
+
+This application interacts with the QuickSell API at https://api.quicksell.co/v1/internal/frontend-assignment. The API provides the necessary data for displaying and managing tickets.
+
+## Components
+
+The project is organized into several components:
+
+- App.tsx: Main entry point of the application
+- Card/: Component for individual cards
+- Column/: Component for each column layout
+- Grid/: Component for all the columns to display
+- Navbar/: Component for display and sorting options
+- UserProfile/: Component for user profile icon
+
+Each component is designed to be reusable and follows React best practices for component composition.
+
+## State Management
+
+The application uses React's useState hook for managing the application state, including the selected grouping and sorting options, as well as the filtered and sorted ticket data.
+
+## Responsive Design
+
+The Kanban board is built using CSS flexbox and grid layouts to ensure responsiveness across different screen sizes. Media queries are used to adjust the layout for mobile devices.
+
+## Saving User View State
+
+The application uses localStorage to persist the user's view state. This allows users to resume their work even after closing and reopening the browser.
+
+## Credits
+
+It is build by Saiyam Jain from IIT (BHU), Varanasi. It is a Quick Sell Frontend Assignment. It is build uisng Create-React-App and Typescript. It is a simple Kanban Board Application.
