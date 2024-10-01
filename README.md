@@ -15,13 +15,13 @@
 
 ## Project Overview
 
-This project is a Kanban Board application built using React and TypeScript. It serves as a visual tool for managing tasks and projects, allowing teams to collaborate effectively by organizing tasks, assigning them to team members, setting due dates, and prioritizing them.
+This project is a Kanban Board application built using React and TypeScript.
 
 Key features of this Kanban Board include:
 
-- Dynamic grouping of tickets based on status, user assignment, and priority
+- Dynamic grouping of tickets based on status, user, and priority
 - Sorting options for tickets based on priority and title
-- Responsive design matching the provided screenshots
+- Responsive design
 - Persistence of user view state across page reloads
 
 ## Setup Instructions
@@ -59,13 +59,23 @@ Tickets can be sorted in two ways:
 
 These sorting options are available alongside the grouping options.
 
-### UI
+### UI Design (Showcasing Grouping)
 
-Grouping By Status:
+**Grouping By Status:**
 
-Grouping By User:
+![GroupByStatus](https://github.com/user-attachments/assets/33f59fc8-767d-4756-83f4-ab41021976bd)
 
-Grouping By Priority:
+**Grouping By User:**
+
+![GroupByUser](https://github.com/user-attachments/assets/6f4d768d-4da0-4a49-8872-31bb09c832ab)
+
+**Grouping By Priority:**
+
+![GroupByPriority](https://github.com/user-attachments/assets/610152ed-476e-4e31-a20a-9ff5f8064c74)
+
+**Mobile View:**
+
+![Mobile View](https://github.com/user-attachments/assets/7c46cea6-f764-4918-a8d7-d94adf1b297b)
 
 ### Card Design
 
@@ -113,8 +123,8 @@ The Kanban board is built using CSS flexbox and grid layouts to ensure responsiv
 
 ## Saving User View State
 
-The application uses localStorage to persist the user's view state. This allows users to resume their work even after closing and reopening the browser.
+The application uses localStorage to persist the user's view state. This allows user to store their group and order filters even after closing and reopening the browser.
 
 ## Credits
 
-It is build by Saiyam Jain from IIT (BHU), Varanasi. It is a Quick Sell Frontend Assignment. It is build uisng Create-React-App and Typescript. It is a simple Kanban Board Application.
+It is build by Saiyam Jain from IIT (BHU), Varanasi, uisng Create-React-App and Typescript. It is a Quick Sell Frontend Assignment. It is a simple Kanban Board Application, frontend UI.
