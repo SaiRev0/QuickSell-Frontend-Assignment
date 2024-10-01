@@ -63,19 +63,19 @@ These sorting options are available alongside the grouping options.
 
 **Grouping By Status:**
 
-![GroupByStatus](https://github.com/user-attachments/assets/33f59fc8-767d-4756-83f4-ab41021976bd)
+![GroupByStatus](./public/UI/GroupByStatus.jpeg)
 
 **Grouping By User:**
 
-![GroupByUser](https://github.com/user-attachments/assets/6f4d768d-4da0-4a49-8872-31bb09c832ab)
+![GroupByUser](./public/UI/GroupByUser.jpeg)
 
 **Grouping By Priority:**
 
-![GroupByPriority](https://github.com/user-attachments/assets/610152ed-476e-4e31-a20a-9ff5f8064c74)
+![GroupByPriority](./public/UI/GroupByPriority.jpeg)
 
 **Mobile View:**
 
-![Mobile View](https://github.com/user-attachments/assets/7c46cea6-f764-4918-a8d7-d94adf1b297b)
+![Mobile View](./public/UI/MobileView.jpeg)
 
 ### Card Design
 
