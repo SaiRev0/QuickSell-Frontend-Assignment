@@ -1,64 +1,64 @@
 import { useMemo } from "react";
 import Card from "../Card";
 import "./column.css";
-import add from "../../assets/add.svg";
-import threeDots from "../../assets/3 dot menu.svg";
+import addIcon from "../../assets/add.svg";
+import menuIcon from "../../assets/3 dot menu.svg";
 import { Ticket, User } from "../../types/interfaces";
 import { getPriorityIcon, getStatusIcon } from "../../utils/iconsSet";
 import UserProfile from "../UserProfile";
 
 function Column({
-  tickets,
-  grouping,
-  groupBy,
-  userIdToData,
+  ticketList,
+  groupType,
+  groupLabel,
+  usersData,
 }: {
-  tickets: Ticket[];
-  grouping: string;
-  groupBy: string;
-  userIdToData: Record<string, User>;
+  ticketList: Ticket[];
+  groupType: string;
+  groupLabel: string;
+  usersData: { [key: string]: User };
 }) {
-  const title = useMemo(() => {
-    if (grouping === "status" || grouping === "priority") return groupBy;
-    if (grouping === "user") return userIdToData[groupBy].name;
-  }, [grouping, groupBy, userIdToData]);
+  const columnTitle = useMemo(() => {
+    if (groupType === "status" || groupType === "priority") return groupLabel;
+    if (groupType === "user") return usersData[groupLabel].name;
+  }, [groupType, groupLabel, usersData]);
 
-  const icon = useMemo(() => {
-    if (grouping === "status") return getStatusIcon(groupBy);
-    if (grouping === "priority") return getPriorityIcon(groupBy);
-    if (grouping === "user")
+  const columnIcon = useMemo(() => {
+    if (groupType === "status") return getStatusIcon(groupLabel);
+    if (groupType === "priority") return getPriorityIcon(groupLabel);
+    if (groupType === "user")
       return (
         <UserProfile
-          name={userIdToData[groupBy].name}
-          available={userIdToData[groupBy].available}
+          userName={usersData[groupLabel].name}
+          isAvailable={usersData[groupLabel].available}
         />
       );
-  }, [grouping, groupBy, userIdToData]);
+  }, [groupType, groupLabel, usersData]);
 
   return (
     <div className="column">
       <div className="column-header">
         <div className="column-header-left-container">
-          {icon}
+          {columnIcon}
           <div className="column-title">
-            {title}
-            <span className="count">{tickets.length}</span>
+            {columnTitle}
+            <span className="count">{ticketList.length}</span>
           </div>
         </div>
         <div className="column-header-right-container">
-          <img src={add} alt="add" />
-          <img src={threeDots} alt="3 Dots" />
+          <img src={addIcon} alt="Add" />
+          <img src={menuIcon} alt="Menu" />
         </div>
       </div>
       <div className="cards-container">
-        {tickets.map((ticket: Ticket) => (
+        {ticketList.map((ticket: Ticket) => (
           <Card
             key={ticket.id}
-            ticket={ticket}
-            userData={userIdToData[ticket.userId]}
-            hideStatusIcon={grouping === "status"}
-            hideProfileIcon={grouping === "user"}
-            hidePriorityIcon={grouping === "priority"}
+            ticketDetails={ticket}
+            assignedUser={usersData[ticket.userId]}
+            hideStatusIcon={groupType === "status"}
+            hideUserProfile={groupType === "user"}
+            hidePriorityIcon={groupType === "priority"}
           />
         ))}
       </div>

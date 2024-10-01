@@ -2,23 +2,24 @@ import React from "react";
 import "./userProfile.css";
 
 function UserProfile({
-  name,
-  available,
+  userName,
+  isAvailable,
 }: {
-  name: string;
-  available: boolean;
+  userName: string;
+  isAvailable: boolean;
 }) {
-  const initials = React.useMemo(() => {
-    return name
+  // Compute user initials based on the name
+  const userInitials = React.useMemo(() => {
+    return userName
       .split(" ")
-      .map((item: string) => item[0])
+      .map((part: string) => part[0])
       .join("");
-  }, [name]);
+  }, [userName]);
 
   return (
     <div className="UserProfile-container">
-      <div className="UserProfile-text">{initials}</div>
-      <div className={`user-status ${available && "available"}`}></div>
+      <div className="UserProfile-text">{userInitials}</div>
+      <div className={`user-status ${isAvailable && "available"}`}></div>
     </div>
   );
 }

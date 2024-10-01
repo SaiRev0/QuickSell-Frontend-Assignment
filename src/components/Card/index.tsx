@@ -1,45 +1,48 @@
 import "./card.css";
-import UserIcon from "../UserProfile";
+import UserProfile from "../UserProfile";
 import { Ticket, User } from "../../types/interfaces";
 import { getStatusIcon, getPriorityIconFromNumber } from "../../utils/iconsSet";
 
-function Card({
-  ticket,
-  userData,
+function TicketCard({
+  ticketDetails,
+  assignedUser,
   hideStatusIcon,
-  hideProfileIcon,
+  hideUserProfile,
   hidePriorityIcon,
 }: {
-  ticket: Ticket;
-  userData: User;
+  ticketDetails: Ticket;
+  assignedUser: User;
   hideStatusIcon: boolean;
-  hideProfileIcon: boolean;
+  hideUserProfile: boolean;
   hidePriorityIcon: boolean;
 }) {
   return (
     <div className="card">
       <div className="top-container">
-        <div className="ticket-id">{ticket.id}</div>
-        {hideProfileIcon ? null : (
-          <UserIcon name={userData.name} available={userData.available} />
+        <div className="ticket-id">{ticketDetails.id}</div>
+        {!hideUserProfile && (
+          <UserProfile
+            userName={assignedUser.name}
+            isAvailable={assignedUser.available}
+          />
         )}
       </div>
       <div className="middle-container">
-        {hideStatusIcon ? null : getStatusIcon(ticket.status)}
-        <div className="title" title={ticket.title}>
-          {ticket.title}
+        {!hideStatusIcon && getStatusIcon(ticketDetails.status)}
+        <div className="title" title={ticketDetails.title}>
+          {ticketDetails.title}
         </div>
       </div>
       <div className="bottom-container">
-        {hidePriorityIcon ? null : (
+        {!hidePriorityIcon && (
           <div className="more-icon-container">
-            {getPriorityIconFromNumber(ticket.priority)}
+            {getPriorityIconFromNumber(ticketDetails.priority)}
           </div>
         )}
-        {ticket.tag.map((t: string) => (
-          <div key={t} className="tag-container">
+        {ticketDetails.tag.map((ticketTag: string) => (
+          <div key={ticketTag} className="tag-container">
             <div className="tag-icon"></div>
-            <div className="tag-text">{t}</div>
+            <div className="tag-text">{ticketTag}</div>
           </div>
         ))}
       </div>
@@ -47,4 +50,4 @@ function Card({
   );
 }
 
-export default Card;
+export default TicketCard;

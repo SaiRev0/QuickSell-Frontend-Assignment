@@ -1,79 +1,88 @@
 import { useCallback, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-import Grid from "./components/Grid";
+import TicketGrid from "./components/TicketGrid";
 import { QUICK_SELL_API } from "./utils/API";
 import { loadGrid, mapUsersByUserId } from "./utils/sortGroup";
 import { Ticket, User } from "./types/interfaces";
-import Spinner from "./components/Spinner";
+import LoadingSpinner from "./components/Spinner";
 import "./App.css";
 
 function App() {
-  const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [userData, setUserData] = useState<Record<string, User>>({});
-  const [gridData, setGridData] = useState<Record<string, Ticket[]>>({});
-  const [grouping, setGrouping] = useState<string>("status");
-  const [ordering, setOrdering] = useState<string>("priority");
-  const [loading, setLoading] = useState(true);
+  const [ticketList, setTicketList] = useState<Ticket[]>([]);
+  const [userMap, setUserMap] = useState<{ [key: string]: User }>({});
+  const [gridLayout, setGridLayout] = useState<{ [key: string]: Ticket[] }>({});
+  const [groupType, setGroupType] = useState<string>("status");
+  const [sortOrder, setSortOrder] = useState<string>("priority");
+  const [isLoading, setIsLoading] = useState(true);
 
-  const saveFilters = useCallback((data: Record<string, string>) => {
-    for (let key in data) localStorage.setItem(key, data[key]);
-  }, []);
-
-  const loadFilters = useCallback(() => {
-    setGrouping(localStorage.getItem("grouping") || "status");
-    setOrdering(localStorage.getItem("ordering") || "priority");
-  }, []);
-
-  useEffect(() => {
-    loadFilters();
-    fetch(QUICK_SELL_API)
-      .then((resp) => resp.json())
-      .then((res) => {
-        const { tickets, users } = res;
-        setTickets(tickets);
-        setUserData(mapUsersByUserId(users));
-      })
-      .catch((err) => {
-        console.log(err, "Error fetching data");
-      });
-  }, [loadFilters]);
-
-  useEffect(() => {
-    if (!tickets.length) return;
-    setGridData(loadGrid(tickets, grouping, ordering));
-    setLoading(false);
-  }, [grouping, ordering, tickets]);
-
-  const onSetGrouping = useCallback(
-    (value: string) => {
-      setLoading(true);
-      setGrouping(value);
-      saveFilters({ grouping: value });
+  // Save the current filter settings in local storage
+  const persistFilters = useCallback(
+    (filterData: { [key: string]: string }) => {
+      for (let key in filterData) localStorage.setItem(key, filterData[key]);
     },
-    [saveFilters]
+    []
   );
 
-  const onSetOrdering = useCallback(
+  // Load filter settings from local storage
+  const retrieveFilters = useCallback(() => {
+    setGroupType(localStorage.getItem("grouping") || "status");
+    setSortOrder(localStorage.getItem("ordering") || "priority");
+  }, []);
+
+  useEffect(() => {
+    retrieveFilters();
+    fetch(QUICK_SELL_API)
+      .then((response) => response.json())
+      .then((result) => {
+        const { tickets, users } = result;
+        setTicketList(tickets);
+        setUserMap(mapUsersByUserId(users));
+      })
+      .catch((error) => {
+        console.log(error, "Error fetching data");
+      });
+  }, [retrieveFilters]);
+
+  useEffect(() => {
+    if (!ticketList.length) return;
+    setGridLayout(loadGrid(ticketList, groupType, sortOrder));
+    setIsLoading(false);
+  }, [groupType, sortOrder, ticketList]);
+
+  const updateGroupType = useCallback(
     (value: string) => {
-      setLoading(true);
-      setOrdering(value);
-      saveFilters({ ordering: value });
+      setIsLoading(true);
+      setGroupType(value);
+      persistFilters({ grouping: value });
     },
-    [saveFilters]
+    [persistFilters]
+  );
+
+  const updateSortOrder = useCallback(
+    (value: string) => {
+      setIsLoading(true);
+      setSortOrder(value);
+      persistFilters({ ordering: value });
+    },
+    [persistFilters]
   );
 
   return (
     <>
       <Navbar
-        grouping={grouping}
-        setGrouping={onSetGrouping}
-        ordering={ordering}
-        setOrdering={onSetOrdering}
+        groupType={groupType}
+        setGroupType={updateGroupType}
+        sortOrder={sortOrder}
+        setSortOrder={updateSortOrder}
       />
-      {loading ? (
-        <Spinner />
+      {isLoading ? (
+        <LoadingSpinner />
       ) : (
-        <Grid gridData={gridData} grouping={grouping} userIdToData={userData} />
+        <TicketGrid
+          ticketGroups={gridLayout}
+          groupCriteria={groupType}
+          usersData={userMap}
+        />
       )}
     </>
   );

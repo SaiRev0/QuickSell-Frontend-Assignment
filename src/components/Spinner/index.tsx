@@ -1,12 +1,16 @@
 import "./spinner.css";
-import backlog from "../../assets/Backlog.svg";
+import loadingIcon from "../../assets/Backlog.svg";
 
-function Spinner({ fullscreen = true }: { fullscreen?: boolean }) {
+function LoadingSpinner({
+  fullscreenMode = true,
+}: {
+  fullscreenMode?: boolean;
+}) {
   return (
-    <div className={`spinner-container ${fullscreen && "fullscreen"}`}>
-      <img src={backlog} alt="backlog" className="spinner-image" />
+    <div className={`spinner-container ${fullscreenMode && "fullscreen"}`}>
+      <img src={loadingIcon} alt="Loading" className="spinner-image" />
     </div>
   );
 }
 
-export default Spinner;
+export default LoadingSpinner;
