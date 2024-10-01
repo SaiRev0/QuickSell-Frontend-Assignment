@@ -3,6 +3,14 @@
     padding: 0.75rem 1rem;
     box-shadow: 0 0 0.5rem #12121221;
     background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 25px 20px -20px;
+    padding: 0.75rem;
+    cursor: pointer;
 }
 
 .card .ticket-id {
@@ -13,10 +21,15 @@
 .card .title {
     color: #282a2f;
     font-size: 0.85rem;
-    cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.card:hover .title {
+    white-space: wrap;
+    overflow: auto;
+    text-overflow: none;
 }
 
 .card .middle-container {
