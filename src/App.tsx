@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import TicketGrid from "./components/TicketGrid";
-import { QUICK_SELL_API } from "./utils/API";
 import { loadGrid, mapUsersByUserId } from "./utils/sortGroup";
 import { Ticket, User } from "./types/interfaces";
 import LoadingSpinner from "./components/Spinner";
 import "./App.css";
+
+const QUICK_SELL_API = process.env.REACT_APP_QUICK_SELL_API;
 
 function App() {
   const [ticketList, setTicketList] = useState<Ticket[]>([]);
