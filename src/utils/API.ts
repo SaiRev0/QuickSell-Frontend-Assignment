@@ -1,2 +1,1 @@
-export const QUICK_SELL_API =
-  "https://api.quicksell.co/v1/internal/frontend-assignment";
+export const QUICK_SELL_API = process.env.REACT_APP_QUICK_SELL_API;

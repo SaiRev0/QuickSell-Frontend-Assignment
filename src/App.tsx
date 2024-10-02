@@ -31,16 +31,18 @@ function App() {
 
   useEffect(() => {
     retrieveFilters();
-    fetch(QUICK_SELL_API)
-      .then((response) => response.json())
-      .then((result) => {
-        const { tickets, users } = result;
-        setTicketList(tickets);
-        setUserMap(mapUsersByUserId(users));
-      })
-      .catch((error) => {
-        console.log(error, "Error fetching data");
-      });
+    if (QUICK_SELL_API) {
+      fetch(QUICK_SELL_API)
+        .then((response) => response.json())
+        .then((result) => {
+          const { tickets, users } = result;
+          setTicketList(tickets);
+          setUserMap(mapUsersByUserId(users));
+        })
+        .catch((error) => {
+          console.log(error, "Error fetching data");
+        });
+    }
   }, [retrieveFilters]);
 
   useEffect(() => {
